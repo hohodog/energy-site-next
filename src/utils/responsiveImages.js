@@ -1,6 +1,6 @@
 const responsiveWidths = [640, 960, 1280, 1600]
 const defaultSizes =
-  '(max-width: 767px) calc(100vw - 42px), (max-width: 1480px) calc(100vw - 78px), 1364px'
+  '(max-width: 767px) calc(100vw - 38px), (max-width: 1240px) calc(100vw - 74px), 1120px'
 const assetRoot = '../assets/site-content'
 
 export const createImageFactory = (imageModules) => {

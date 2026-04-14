@@ -41,3 +41,10 @@ __screenshots__/
 # Source decks and working materials
 网站内容/
 网站内容.zip
+.cache/
+.generated/
+
+# Unbundled source exports kept locally; pages use the responsive WebP set.
+src/assets/site-content/**/*.jpg
+src/assets/site-content/**/*.jpeg
+src/assets/site-content/**/*.png

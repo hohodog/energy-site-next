@@ -28,27 +28,26 @@ defineProps({
 <style scoped>
 .image-stack-page {
   display: grid;
-  gap: clamp(14px, 2vw, 22px);
-  width: min(100%, 1440px);
+  gap: clamp(16px, 1.8vw, 24px);
+  width: min(100%, 1180px);
   margin: 0 auto;
-  padding: clamp(14px, 2vw, 24px) clamp(14px, 2vw, 28px) 44px;
+  padding: clamp(12px, 2vw, 22px) clamp(12px, 2.6vw, 28px) 42px;
   background: transparent;
 }
 
 .image-frame {
   position: relative;
   margin: 0;
-  padding: clamp(6px, 0.8vw, 10px);
-  border: 1px solid rgba(219, 225, 221, 0.92);
-  border-radius: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(249, 251, 250, 0.86));
+  padding: clamp(5px, 0.65vw, 8px);
+  overflow: clip;
+  border: 1px solid rgba(214, 222, 218, 0.96);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.96);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.76),
-    0 18px 42px rgba(15, 31, 26, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.78),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.52);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+    0 1px 0 rgba(255, 255, 255, 0.78),
+    0 12px 32px rgba(15, 31, 26, 0.07);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 640px;
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
@@ -58,9 +57,10 @@ defineProps({
 .image-frame::before {
   content: '';
   position: absolute;
-  inset: clamp(6px, 0.8vw, 10px);
+  inset: clamp(5px, 0.65vw, 8px);
   z-index: 1;
-  border: 1px solid rgba(22, 49, 41, 0.08);
+  border: 1px solid rgba(22, 49, 41, 0.07);
+  border-radius: 5px;
   pointer-events: none;
 }
 
@@ -68,23 +68,37 @@ defineProps({
   border-color: rgba(196, 208, 202, 0.96);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.82),
-    0 24px 54px rgba(15, 31, 26, 0.12),
-    0 8px 20px rgba(15, 31, 26, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.82),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
-  transform: translateY(-2px);
+    0 16px 38px rgba(15, 31, 26, 0.1);
+  transform: translateY(-1px);
 }
 
 .image-frame img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 0;
+  border-radius: 6px;
+  background: #ffffff;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .image-frame {
     transition: none;
+  }
+
+  .image-frame:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .image-stack-page {
+    gap: 12px;
+    padding-bottom: 30px;
+  }
+
+  .image-frame {
+    box-shadow: 0 8px 20px rgba(15, 31, 26, 0.06);
+    contain-intrinsic-size: auto 360px;
   }
 
   .image-frame:hover {
