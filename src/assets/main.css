@@ -1,0 +1,118 @@
+@import './base.css';
+
+:root {
+  --bg-page: #edf2ef;
+  --bg-surface: rgba(255, 255, 255, 0.9);
+  --bg-surface-strong: #ffffff;
+  --text-main: #142821;
+  --text-soft: #63756d;
+  --text-inverse: #effaf5;
+  --brand-deep: #123129;
+  --brand: #1f6f67;
+  --brand-bright: #1f9eb3;
+  --line-soft: rgba(198, 212, 205, 0.94);
+  --line-strong: rgba(22, 49, 41, 0.12);
+  --shadow-soft: 0 18px 48px rgba(17, 33, 27, 0.07);
+  --layout-width: 1320px;
+  --layout-gutter: clamp(20px, 3.6vw, 40px);
+}
+
+body {
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at top right, rgba(68, 184, 199, 0.08), transparent 18%),
+    radial-gradient(circle at top left, rgba(60, 149, 121, 0.08), transparent 24%),
+    linear-gradient(180deg, #edf2ef 0%, #f5f8f6 42%, #eef3f0 100%);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: 'Space Grotesk', 'Manrope', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+p,
+ul,
+ol {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.page-shell {
+  min-height: calc(100vh - 220px);
+}
+
+.section-wrap {
+  width: min(100%, var(--layout-width));
+  margin: 0 auto;
+  padding: 0 var(--layout-gutter);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button-primary {
+  color: #f5fffc;
+  background: linear-gradient(135deg, #164438 0%, #1f9eb3 100%);
+  box-shadow: 0 14px 32px rgba(15, 55, 47, 0.18);
+}
+
+.button-secondary {
+  color: #19372d;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(199, 212, 206, 0.92);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: rgba(31, 113, 107, 0.12);
+  color: #1c7068;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
