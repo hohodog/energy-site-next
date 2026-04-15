@@ -32,6 +32,8 @@ const cards = [
     icon: 'grid',
   },
 ]
+
+const splitContactText = (text) => text.split(/(,)/)
 </script>
 
 <template>
@@ -182,7 +184,16 @@ const cards = [
                   stroke-linejoin="round"
                 />
               </svg>
-              <span>{{ item.text }}</span>
+              <span>
+                <template
+                  v-for="(part, partIndex) in splitContactText(item.text)"
+                  :key="`${item.text}-${partIndex}`"
+                >
+                  {{ part }}<br v-if="item.icon === 'location' && partIndex === 3" /><wbr
+                    v-else-if="part === ','"
+                  />
+                </template>
+              </span>
             </a>
           </div>
 
@@ -205,7 +216,14 @@ const cards = [
                     stroke-linejoin="round"
                   />
                 </svg>
-                <span>{{ item.text }}</span>
+                <span>
+                  <template
+                    v-for="(part, partIndex) in splitContactText(item.text)"
+                    :key="`${item.text}-${partIndex}`"
+                  >
+                    {{ part }}<wbr v-if="part === ','" />
+                  </template>
+                </span>
               </a>
             </div>
           </div>
@@ -217,70 +235,102 @@ const cards = [
 
 <style scoped>
 .contact-page {
-  padding: 51px 51px 67px;
-  background: #efefef;
+  padding: clamp(28px, 5vw, 64px) var(--layout-gutter) clamp(42px, 6vw, 78px);
+  background:
+    linear-gradient(90deg, rgba(255, 214, 23, 0.2) 0 6px, transparent 6px 100%),
+    linear-gradient(180deg, rgba(242, 245, 249, 0.72), rgba(255, 255, 255, 0));
 }
 
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 73px 35px;
+  gap: 24px;
+  max-width: 1180px;
+  margin: 0 auto;
 }
 
 .contact-card {
+  position: relative;
   display: grid;
-  grid-template-columns: 226px minmax(0, 1fr);
-  align-items: center;
-  min-height: 341px;
-  padding: 0 56px 0 47px;
+  grid-template-columns: 72px minmax(0, 1fr);
+  align-items: start;
+  gap: 22px;
+  min-width: 0;
+  min-height: 260px;
+  padding: 32px;
   border-radius: 4px;
   background: #ffffff;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.025);
+  border: 1px solid var(--line-soft);
+  border-top: 4px solid var(--brand);
+  box-shadow: var(--shadow-soft);
+}
+
+.contact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 46px;
+  height: 4px;
+  background: var(--accent);
 }
 
 .card-icon-wrap {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .card-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 132px;
-  height: 132px;
-  border-radius: 999px;
-  background: #ec101c;
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  background: var(--brand);
   color: #ffffff;
 }
 
+.card-icon::after {
+  content: '';
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
 .card-icon svg {
-  width: 68px;
-  height: 68px;
+  width: 32px;
+  height: 32px;
 }
 
 .card-content {
   min-width: 0;
+  max-width: 100%;
 }
 
 .card-title {
   margin: 0;
-  color: #000000;
-  font-size: 34px;
-  font-weight: 800;
+  color: var(--text-main);
+  font-size: 30px;
+  font-weight: 700;
   line-height: 1.12;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 .card-subtitles {
-  margin-top: 29px;
+  margin-top: 20px;
 }
 
 .card-subtitle {
   margin: 0;
-  color: #9c9f9d;
-  font-size: 18px;
+  color: var(--text-soft);
+  font-size: 17px;
   font-weight: 700;
   line-height: 1.42;
 }
@@ -289,24 +339,40 @@ const cards = [
   display: grid;
   gap: 10px;
   margin-top: 28px;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .contact-link {
-  display: inline-flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 25px minmax(0, 1fr);
+  align-items: flex-start;
   gap: 11px;
-  width: fit-content;
-  color: #ef212b;
+  width: 100%;
+  max-width: min(100%, 620px);
+  min-width: 0;
+  color: var(--brand);
   text-decoration: none;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .contact-link svg {
+  margin-top: 2px;
   width: 25px;
   height: 25px;
   flex: 0 0 25px;
+}
+
+.contact-link span {
+  display: block;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .extra-block {
@@ -337,7 +403,7 @@ const cards = [
   display: grid;
   grid-template-columns: repeat(4, 37px);
   align-items: center;
-  gap: 35px;
+  gap: 24px;
   margin-top: 34px;
 }
 
@@ -399,7 +465,7 @@ const cards = [
 
 @media (max-width: 1280px) {
   .contact-page {
-    padding: 34px 24px 44px;
+    padding: 34px var(--layout-gutter) 44px;
   }
 
   .contact-grid {
@@ -407,23 +473,9 @@ const cards = [
   }
 
   .contact-card {
-    grid-template-columns: 170px minmax(0, 1fr);
-    min-height: 290px;
-    padding: 0 28px;
-  }
-
-  .card-icon {
-    width: 112px;
-    height: 112px;
-  }
-
-  .card-icon svg {
-    width: 56px;
-    height: 56px;
-  }
-
-  .card-title {
-    font-size: 30px;
+    grid-template-columns: 64px minmax(0, 1fr);
+    min-height: 240px;
+    padding: 30px 28px;
   }
 }
 
@@ -450,17 +502,17 @@ const cards = [
   }
 
   .card-icon {
-    width: 88px;
-    height: 88px;
+    width: 52px;
+    height: 52px;
   }
 
   .card-icon svg {
-    width: 44px;
-    height: 44px;
+    width: 30px;
+    height: 30px;
   }
 
   .card-title {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .card-subtitles {

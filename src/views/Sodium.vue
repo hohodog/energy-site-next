@@ -47,5 +47,5 @@ const images = [
 </script>
 
 <template>
-  <ImageStackPage :images="images" />
+  <ImageStackPage :images="images" crop-first-image />
 </template>

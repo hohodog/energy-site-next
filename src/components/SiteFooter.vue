@@ -91,26 +91,37 @@ const focusAreas = [
 
 <style scoped>
 .site-footer {
-  padding: 28px 0 44px;
+  padding: 26px 0 44px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(242, 245, 249, 0.64));
 }
 
 .footer-shell {
-  border: 1px solid rgba(218, 224, 220, 0.92);
-  border-radius: 28px;
-  background:
-    linear-gradient(180deg, rgba(251, 252, 251, 0.96), rgba(246, 248, 246, 0.96)),
-    linear-gradient(135deg, rgba(28, 141, 157, 0.03), rgba(22, 61, 52, 0.04));
-  box-shadow:
-    0 18px 44px rgba(15, 31, 26, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  position: relative;
+  border-top: 4px solid var(--brand);
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   overflow: hidden;
+}
+
+.footer-shell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 64px;
+  height: 4px;
+  background: var(--accent);
 }
 
 .footer-top {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  gap: 48px;
-  padding: 36px 40px 30px;
+  gap: 44px;
+  padding: 34px 0 28px;
 }
 
 .footer-brand-block {
@@ -126,23 +137,31 @@ const focusAreas = [
 }
 
 .footer-brand-mark {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 44px;
   height: 44px;
   flex: 0 0 44px;
-  border-radius: 14px;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 42%),
-    linear-gradient(135deg, #163d34 0%, #1d8b98 100%);
-  color: #f7fbf9;
+  border-radius: 6px;
+  background: var(--brand);
+  color: #ffffff;
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.08em;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.24),
-    0 10px 24px rgba(18, 52, 43, 0.14);
+  box-shadow: none;
+}
+
+.footer-brand-mark::after {
+  content: '';
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--accent);
 }
 
 .footer-brand-copy {
@@ -151,23 +170,23 @@ const focusAreas = [
 }
 
 .footer-brand-copy strong {
-  color: #17342c;
+  color: var(--text-main);
   font-size: 16px;
-  font-weight: 800;
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  letter-spacing: 0;
   line-height: 1.1;
 }
 
 .footer-brand-copy span {
-  color: #72857d;
+  color: var(--text-muted);
   font-size: 10px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .footer-intro {
   margin: 22px 0 0;
-  color: #546760;
+  color: var(--text-soft);
   font-size: 14px;
   line-height: 1.8;
 }
@@ -184,16 +203,16 @@ const focusAreas = [
 
 .footer-heading {
   margin: 0 0 14px;
-  color: #17342c;
+  color: var(--brand);
   font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .footer-link,
 .footer-mini-link {
-  color: #4d6159;
+  color: var(--text-soft);
   text-decoration: none;
   transition:
     color 0.2s ease,
@@ -202,7 +221,7 @@ const focusAreas = [
 
 .footer-link {
   display: block;
-  padding: 9px 0;
+  padding: 7px 0;
   font-size: 14px;
   line-height: 1.5;
 }
@@ -213,7 +232,7 @@ const focusAreas = [
 .footer-mini-link:focus-visible,
 .footer-brand:hover,
 .footer-brand:focus-visible {
-  color: #14362d;
+  color: var(--brand);
   text-decoration: none;
 }
 
@@ -226,7 +245,7 @@ const focusAreas = [
 .footer-list li {
   position: relative;
   padding: 9px 0 9px 16px;
-  color: #4d6159;
+  color: var(--text-soft);
   font-size: 14px;
   line-height: 1.6;
 }
@@ -238,8 +257,8 @@ const focusAreas = [
   top: 18px;
   width: 6px;
   height: 6px;
-  border-radius: 999px;
-  background: rgba(29, 139, 152, 0.5);
+  border-radius: 3px;
+  background: var(--accent);
 }
 
 .footer-bottom {
@@ -247,13 +266,13 @@ const focusAreas = [
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  padding: 18px 40px 22px;
-  border-top: 1px solid rgba(223, 228, 225, 0.92);
+  padding: 18px 0 0;
+  border-top: 1px solid rgba(0, 68, 148, 0.16);
 }
 
 .footer-meta {
   margin: 0;
-  color: #70827a;
+  color: var(--text-muted);
   font-size: 13px;
   line-height: 1.6;
 }
@@ -271,7 +290,7 @@ const focusAreas = [
 }
 
 .footer-mini-link-accent {
-  color: #173f35;
+  color: var(--brand);
 }
 
 .footer-link::after,
@@ -297,7 +316,7 @@ const focusAreas = [
   }
 
   .footer-top {
-    padding: 28px 22px 24px;
+    padding: 26px 0 24px;
   }
 
   .footer-grid {
@@ -307,13 +326,13 @@ const focusAreas = [
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
-    padding: 18px 22px 22px;
+    padding: 18px 0 0;
   }
 }
 
 @media (max-width: 560px) {
   .footer-shell {
-    border-radius: 22px;
+    border-radius: 0;
   }
 
   .footer-grid {
@@ -330,7 +349,7 @@ const focusAreas = [
     width: 40px;
     height: 40px;
     flex-basis: 40px;
-    border-radius: 13px;
+    border-radius: 6px;
   }
 
   .footer-brand-copy strong {

@@ -111,7 +111,7 @@ onUnmounted(() => {
   position: sticky;
   top: 0;
   z-index: 1200;
-  padding: 20px 0 0;
+  padding: 12px 0 0;
   transition:
     padding 0.22s ease,
     transform 0.22s ease;
@@ -121,34 +121,33 @@ onUnmounted(() => {
   content: '';
   position: absolute;
   inset: 0 0 auto;
-  height: 112px;
-  background: linear-gradient(180deg, rgba(243, 246, 243, 0.94), rgba(243, 246, 243, 0));
+  height: 96px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(242, 245, 249, 0));
   pointer-events: none;
 }
 
 .site-nav-scrolled,
 .site-nav-open {
-  padding-top: 12px;
+  padding-top: 8px;
 }
 
 .nav-shell,
 .mobile-panel {
-  border: 1px solid rgba(219, 225, 221, 0.92);
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.86);
-  box-shadow:
-    0 18px 42px rgba(15, 31, 26, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--line-soft);
+  border-top: 4px solid var(--brand);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 10px 26px rgba(0, 40, 88, 0.07);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .nav-shell {
   display: flex;
   align-items: center;
-  gap: 20px;
-  min-height: 78px;
-  padding: 12px 14px 12px 20px;
+  gap: 16px;
+  min-height: 66px;
+  padding: 10px 12px 10px 16px;
 }
 
 .brand {
@@ -163,23 +162,31 @@ onUnmounted(() => {
 }
 
 .brand-mark {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 42px;
   height: 42px;
   flex: 0 0 42px;
-  border-radius: 14px;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 42%),
-    linear-gradient(135deg, #163d34 0%, #1d8b98 100%);
-  color: #f7fbf9;
+  border-radius: 6px;
+  background: var(--brand);
+  color: #ffffff;
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.08em;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.24),
-    0 10px 24px rgba(18, 52, 43, 0.16);
+  box-shadow: none;
+}
+
+.brand-mark::after {
+  content: '';
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--accent);
 }
 
 .brand-copy {
@@ -189,29 +196,29 @@ onUnmounted(() => {
 }
 
 .brand-copy strong {
-  color: #17342c;
+  color: var(--text-main);
   font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  letter-spacing: 0;
   line-height: 1.1;
 }
 
 .brand-copy span {
-  color: #72857d;
+  color: var(--text-muted);
   font-size: 10px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px;
-  border: 1px solid rgba(226, 231, 228, 0.9);
-  border-radius: 999px;
-  background: rgba(247, 249, 247, 0.9);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  gap: 2px;
+  padding: 0;
+  border: 1px solid rgba(0, 68, 148, 0.14);
+  border-radius: 8px;
+  background: var(--bg-blue-soft);
+  box-shadow: none;
 }
 
 .nav-link,
@@ -219,12 +226,12 @@ onUnmounted(() => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  color: #324840;
+  border-radius: 6px;
+  color: var(--text-soft);
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
-  padding: 11px 16px;
+  padding: 10px 13px;
   transition:
     background 0.2s ease,
     color 0.2s ease,
@@ -236,9 +243,9 @@ onUnmounted(() => {
 .mobile-link:hover,
 .nav-link-active,
 .mobile-link-active {
-  color: #14362d;
+  color: var(--brand);
   background: #ffffff;
-  box-shadow: 0 6px 14px rgba(17, 45, 37, 0.08);
+  box-shadow: inset 0 -3px 0 var(--accent);
 }
 
 .brand:hover,
@@ -267,14 +274,14 @@ onUnmounted(() => {
   justify-content: center;
   min-height: 46px;
   padding: 0 18px;
-  border-radius: 999px;
-  color: #f7fffc;
+  border-radius: 8px;
+  color: #000000;
   text-decoration: none;
   font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.01em;
-  background: linear-gradient(135deg, #163d34 0%, #1d8b98 100%);
-  box-shadow: 0 12px 24px rgba(18, 52, 43, 0.16);
+  letter-spacing: 0;
+  background: var(--accent);
+  box-shadow: 0 10px 20px rgba(0, 68, 148, 0.14);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
@@ -283,7 +290,7 @@ onUnmounted(() => {
 
 .nav-contact:hover {
   transform: translateY(-1px);
-  box-shadow: 0 14px 26px rgba(18, 52, 43, 0.2);
+  box-shadow: 0 12px 22px rgba(0, 68, 148, 0.18);
 }
 
 .nav-link::after,
@@ -299,10 +306,10 @@ onUnmounted(() => {
   width: 46px;
   height: 46px;
   padding: 0;
-  border: 1px solid rgba(214, 221, 217, 0.95);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 68, 148, 0.18);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: none;
 }
 
 .menu-toggle span {
@@ -310,8 +317,8 @@ onUnmounted(() => {
   left: 12px;
   right: 12px;
   height: 2px;
-  border-radius: 999px;
-  background: #183a31;
+  border-radius: 2px;
+  background: var(--brand);
 }
 
 .menu-toggle span:nth-child(1) {
@@ -329,7 +336,7 @@ onUnmounted(() => {
 .mobile-panel {
   margin-top: 10px;
   padding: 12px;
-  border-radius: 22px;
+  border-radius: 8px;
 }
 
 .mobile-links {
@@ -340,15 +347,15 @@ onUnmounted(() => {
 .mobile-link {
   justify-content: flex-start;
   padding: 13px 14px;
-  border-radius: 14px;
-  background: rgba(248, 250, 248, 0.8);
+  border-radius: 6px;
+  background: var(--bg-blue-soft);
 }
 
 .mobile-link-cta {
   justify-content: center;
   margin-top: 6px;
-  color: #f6fffc;
-  background: linear-gradient(135deg, #163d34 0%, #1d8b98 100%);
+  color: #000000;
+  background: var(--accent);
 }
 
 .mobile-fade-enter-active,
@@ -377,11 +384,11 @@ onUnmounted(() => {
 
 @media (max-width: 720px) {
   .site-nav {
-    padding-top: 14px;
+    padding-top: 10px;
   }
 
   .nav-shell {
-    min-height: 70px;
+    min-height: 64px;
     padding-left: 14px;
     padding-right: 12px;
   }
@@ -398,7 +405,7 @@ onUnmounted(() => {
     width: 38px;
     height: 38px;
     flex-basis: 38px;
-    border-radius: 12px;
+    border-radius: 6px;
     font-size: 12px;
   }
 }
