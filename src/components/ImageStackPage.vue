@@ -9,6 +9,13 @@ defineProps({
     default: false,
   },
 })
+
+const hotspotStyle = (hotspot) => ({
+  left: `${hotspot.left}%`,
+  top: `${hotspot.top}%`,
+  width: `${hotspot.width}%`,
+  height: `${hotspot.height}%`,
+})
 </script>
 
 <template>
@@ -34,6 +41,26 @@ defineProps({
           :fetchpriority="index === 0 ? 'high' : undefined"
           decoding="async"
         />
+        <template v-for="hotspot in image.hotspots" :key="hotspot.to || hotspot.label">
+          <RouterLink
+            v-if="hotspot.to"
+            class="image-hotspot"
+            :to="hotspot.to"
+            :aria-label="hotspot.label"
+            :style="hotspotStyle(hotspot)"
+          >
+            <span>{{ hotspot.label }}</span>
+          </RouterLink>
+          <button
+            v-else
+            type="button"
+            class="image-hotspot"
+            :aria-label="hotspot.label"
+            :style="hotspotStyle(hotspot)"
+          >
+            <span>{{ hotspot.label }}</span>
+          </button>
+        </template>
       </span>
     </figure>
   </section>
@@ -129,6 +156,7 @@ defineProps({
 }
 
 .image-media {
+  position: relative;
   display: block;
   width: 100%;
   inline-size: 100%;
@@ -140,6 +168,33 @@ defineProps({
   border-radius: 2px;
   background: #ffffff;
   box-shadow: 0 18px 38px rgba(0, 40, 88, 0.08);
+}
+
+.image-hotspot {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.image-hotspot span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.image-hotspot:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  background: rgba(255, 214, 23, 0.16);
 }
 
 .image-frame img {

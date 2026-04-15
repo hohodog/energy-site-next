@@ -88,6 +88,118 @@ const carouselSlides = [
   },
 ]
 
+const technologyFocusHotspots = [
+  {
+    to: '/sodium',
+    label: 'Learn more about Sodium-ion Batteries',
+    left: 20.1,
+    top: 50.2,
+    width: 12,
+    height: 5.6,
+  },
+  {
+    to: '/solid',
+    label: 'Learn more about solid-state Batteries',
+    left: 68.5,
+    top: 50.2,
+    width: 12,
+    height: 5.6,
+  },
+  {
+    to: '/redox',
+    label: 'Learn more about Redox Flow Batteries',
+    left: 19.9,
+    top: 89.4,
+    width: 12,
+    height: 5.6,
+  },
+  {
+    to: '/supercapacitor',
+    label: 'Learn more about Supercapacitors',
+    left: 68.7,
+    top: 89.4,
+    width: 12,
+    height: 5.6,
+  },
+]
+
+const storageLinkAdvantageHotspots = [
+  {
+    to: '/sodium',
+    label: 'Open Sodium-ion Batteries',
+    left: 3.2,
+    top: 48.6,
+    width: 11.1,
+    height: 3.8,
+  },
+  {
+    to: '/solid',
+    label: 'Open Solid-State Batteries',
+    left: 14.9,
+    top: 48.6,
+    width: 11,
+    height: 3.8,
+  },
+  {
+    to: '/redox',
+    label: 'Open Redox Flow Batteries',
+    left: 26.4,
+    top: 48.6,
+    width: 12,
+    height: 3.8,
+  },
+  {
+    to: '/supercapacitor',
+    label: 'Open Supercapacitors',
+    left: 38.8,
+    top: 48.6,
+    width: 9.8,
+    height: 3.8,
+  },
+  {
+    label: 'Partnerships with Top-Tier Companies',
+    left: 53,
+    top: 48.6,
+    width: 19.3,
+    height: 3.8,
+  },
+  {
+    label: 'Access to Latest Technologies',
+    left: 75.3,
+    top: 48.6,
+    width: 17.1,
+    height: 3.8,
+  },
+  {
+    label: 'German Local Team',
+    left: 8,
+    top: 87.9,
+    width: 15.7,
+    height: 4,
+  },
+  {
+    label: 'Localized Service',
+    left: 28.6,
+    top: 87.9,
+    width: 17.5,
+    height: 4,
+  },
+  {
+    label: 'Grid Project Expertise',
+    left: 52.9,
+    top: 87.9,
+    width: 19.2,
+    height: 4,
+  },
+  {
+    label: 'Scenario-Based Solutions',
+    left: 73.4,
+    top: 87.9,
+    width: 18.7,
+    height: 4,
+  },
+]
+
 const contentImages = [
   makeImage({
     path: 'home/02-team-introduction',
@@ -107,18 +219,24 @@ const contentImages = [
     width: 960,
     height: 540,
   }),
-  makeImage({
-    path: 'home/05-technology-focus',
-    alt: 'Homepage source deck page 4',
-    width: 1925,
-    height: 1089,
-  }),
-  makeImage({
-    path: 'home/06-why-storagelink',
-    alt: 'Homepage source deck page 5',
-    width: 1924,
-    height: 1085,
-  }),
+  {
+    ...makeImage({
+      path: 'home/05-technology-focus',
+      alt: 'Homepage source deck page 4',
+      width: 1925,
+      height: 1089,
+    }),
+    hotspots: technologyFocusHotspots,
+  },
+  {
+    ...makeImage({
+      path: 'home/06-why-storagelink',
+      alt: 'Homepage source deck page 5',
+      width: 1924,
+      height: 1085,
+    }),
+    hotspots: storageLinkAdvantageHotspots,
+  },
 ]
 
 const activeSlideIndex = ref(0)
