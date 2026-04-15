@@ -16,6 +16,7 @@ const makeImage = createImageFactory(
       '../assets/site-content/home/*-1280.webp',
       '../assets/site-content/home/*-1600.webp',
       '../assets/site-content/home/04-technology-comparison.webp',
+      '!../assets/site-content/home/07-partner-with-us*.webp',
       '../assets/site-content/sodium/display/page-01-*.webp',
       '../assets/site-content/supercapacitor/display/page-01-*.webp',
       '../assets/site-content/redox/1*.webp',
@@ -116,12 +117,6 @@ const contentImages = [
     path: 'home/06-why-storagelink',
     alt: 'Homepage source deck page 5',
     width: 1924,
-    height: 1085,
-  }),
-  makeImage({
-    path: 'home/07-partner-with-us',
-    alt: 'Homepage source deck page 6',
-    width: 1923,
     height: 1085,
   }),
 ]
