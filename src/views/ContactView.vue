@@ -27,8 +27,11 @@ const cards = [
       { label: 'linkedin', href: 'https://www.linkedin.com/company/linkedin/', type: 'in' },
       { label: 'instagram', href: 'https://www.instagram.com/instagram/', type: 'instagram' },
       { label: 'facebook', href: 'https://www.facebook.com/facebook/', type: 'facebook' },
+      { label: 'whatsapp', href: '#', type: 'whatsapp' },
+      { label: 'telegram', href: '#', type: 'telegram' },
+      { label: 'youtube', href: '#', type: 'youtube' },
     ],
-    links: [{ text: 'null.com', href: 'https://null.com', icon: 'link' }],
+    links: [],
     icon: 'grid',
   },
 ]
@@ -127,11 +130,35 @@ const splitContactText = (text) => text.split(/(,)/)
                 <circle cx="32" cy="32" r="8" stroke="url(#instagram-gradient)" stroke-width="4" />
                 <circle cx="42.5" cy="21.5" r="2.5" fill="url(#instagram-gradient)" />
               </svg>
+              <svg v-else-if="social.type === 'whatsapp'" viewBox="0 0 64 64" fill="none">
+                <path
+                  d="M17.5 49L20.3 39.8C18.6 37 17.7 33.8 17.7 30.5C17.7 20.6 25.8 12.5 35.7 12.5C45.6 12.5 53.7 20.6 53.7 30.5C53.7 40.4 45.6 48.5 35.7 48.5C32.6 48.5 29.7 47.7 27.1 46.3L17.5 49Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M28.5 23.2C28.1 22.3 27.7 22.3 27.1 22.3H25.9C25.5 22.3 24.8 22.5 24.2 23.1C23.6 23.8 22 25.3 22 28.2C22 31.1 24.2 33.9 24.5 34.3C24.8 34.7 28.8 41 35.3 43.2C40.7 45 41.8 44.7 43 44.6C44.2 44.4 46.8 43 47.3 41.5C47.8 40 47.8 38.8 47.7 38.5C47.5 38.2 47.1 38 46.5 37.7L42.1 35.6C41.5 35.3 41.1 35.2 40.7 35.8C40.3 36.4 39.1 37.8 38.8 38.2C38.4 38.6 38.1 38.6 37.5 38.3C36.9 38 34.9 37.4 32.7 35.4C30.9 33.8 29.7 31.8 29.3 31.2C28.9 30.6 29.3 30.3 29.6 30C29.9 29.7 30.2 29.3 30.5 29C30.8 28.7 30.9 28.4 31.1 28C31.3 27.6 31.2 27.2 31 26.9L28.5 23.2Z"
+                  fill="#ffffff"
+                />
+              </svg>
+              <svg v-else-if="social.type === 'telegram'" viewBox="0 0 64 64" fill="none">
+                <circle cx="32" cy="32" r="24" fill="currentColor" />
+                <path
+                  d="M45.7 20.9L40.9 43.7C40.5 45.3 39.6 45.7 38.3 44.9L31 39.5L27.5 42.9C27.1 43.3 26.8 43.6 26.1 43.6L26.6 36.1L40.2 23.8C40.8 23.3 40.1 23 39.3 23.5L22.5 34.1L15.3 31.8C13.7 31.3 13.7 30.2 15.6 29.5L43.8 18.6C45.1 18.2 46.2 18.9 45.7 20.9Z"
+                  fill="#ffffff"
+                />
+              </svg>
+              <svg v-else-if="social.type === 'youtube'" viewBox="0 0 64 64" fill="none">
+                <path
+                  d="M53.3 22.7C52.8 20.8 51.8 19.8 49.9 19.3C46.8 18.5 32 18.5 32 18.5C32 18.5 17.2 18.5 14.1 19.3C12.2 19.8 11.2 20.8 10.7 22.7C9.9 25.8 9.9 32 9.9 32C9.9 32 9.9 38.2 10.7 41.3C11.2 43.2 12.2 44.2 14.1 44.7C17.2 45.5 32 45.5 32 45.5C32 45.5 46.8 45.5 49.9 44.7C51.8 44.2 52.8 43.2 53.3 41.3C54.1 38.2 54.1 32 54.1 32C54.1 32 54.1 25.8 53.3 22.7Z"
+                  fill="currentColor"
+                />
+                <path d="M27.6 37.8V26.2L38.2 32L27.6 37.8Z" fill="#ffffff" />
+              </svg>
               <span v-else>f</span>
             </a>
           </div>
 
-          <div class="contact-lines">
+          <div v-if="card.links?.length" class="contact-lines">
             <a v-for="item in card.links" :key="item.text" :href="item.href" class="contact-link">
               <svg v-if="item.icon === 'phone'" viewBox="0 0 24 24" fill="none">
                 <path
@@ -401,9 +428,10 @@ const splitContactText = (text) => text.split(/(,)/)
 
 .social-row {
   display: grid;
-  grid-template-columns: repeat(4, 37px);
+  grid-template-columns: repeat(4, 48px);
   align-items: center;
-  gap: 24px;
+  gap: 14px 18px;
+  width: max-content;
   margin-top: 34px;
 }
 
@@ -411,18 +439,25 @@ const splitContactText = (text) => text.split(/(,)/)
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 37px;
-  height: 37px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #e6ecf4;
+  border-radius: 8px;
+  background: #f8fafc;
   color: #ef212b;
   text-decoration: none;
-  font-size: 33px;
+  font-size: 28px;
   font-weight: 800;
   line-height: 1;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease;
 }
 
 .social-link svg {
-  width: 37px;
-  height: 37px;
+  width: 28px;
+  height: 28px;
 }
 
 .social-link-x {
@@ -441,6 +476,22 @@ const splitContactText = (text) => text.split(/(,)/)
   color: #0866ff;
 }
 
+.social-link-whatsapp {
+  color: #25d366;
+}
+
+.social-link-telegram {
+  color: #229ed9;
+}
+
+.social-link-youtube {
+  color: #ff0033;
+}
+
+.social-link:nth-child(n + 5) {
+  margin-left: 33px;
+}
+
 .social-link span {
   display: inline-flex;
   align-items: center;
@@ -455,7 +506,13 @@ const splitContactText = (text) => text.split(/(,)/)
 .social-link:hover,
 .social-link:focus-visible {
   text-decoration: none;
-  opacity: 0.9;
+}
+
+.social-link:hover,
+.social-link:focus-visible {
+  background: #ffffff;
+  border-color: #cfd9e7;
+  transform: translateY(-1px);
 }
 
 .contact-link::after,
@@ -530,18 +587,22 @@ const splitContactText = (text) => text.split(/(,)/)
   }
 
   .social-row {
-    gap: 22px;
+    gap: 12px 14px;
   }
 
   .social-link {
-    width: 31px;
-    height: 31px;
-    font-size: 28px;
+    width: 42px;
+    height: 42px;
+    font-size: 24px;
   }
 
   .social-link svg {
-    width: 31px;
-    height: 31px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .social-link:nth-child(n + 5) {
+    margin-left: 28px;
   }
 }
 </style>
